@@ -56,5 +56,5 @@ setorder(avg, activity, subject)
 names(avg)[-(1:2)] <- paste0("avg_", names(avg)[-(1:2)])
 
 # write analysis data
-write.table(har, file = "har.txt", row.names = FALSE)
-write.table(avg, file = "avg.txt", row.names = FALSE)
+write.table(har, file = "har.csv", row.names = FALSE)
+write.table(avg, file = "avg.csv", row.names = FALSE)
