@@ -21,9 +21,9 @@ load_data <- function(subset, measures, activities) {
     y <- fread(file = file.path(subset, paste0("y_", subset, ".txt")),
                col.names = "id")
     
-    cbind(subjects,
+    z <-data.table(subjects,
           # "Uses descriptive activity names to name the activities in the data set"
-          activity = merge(y, activities)$name,
+          activity = merge(y, activities, sort = FALSE)$name,
           # "Extracts only the measurements on the mean and standard deviation for each measurement"
           subset(x, select = measures[grep("(mean|std)\\(\\)", measures)]))
 }
@@ -56,5 +56,5 @@ setorder(avg, activity, subject)
 names(avg)[-(1:2)] <- paste0("avg_", names(avg)[-(1:2)])
 
 # write analysis data
-write.table(har, file = "har.csv", row.names = FALSE)
-write.table(avg, file = "avg.csv", row.names = FALSE)
+write.table(har, file = "har.txt", row.names = FALSE)
+write.table(avg, file = "avg.txt", row.names = FALSE)
